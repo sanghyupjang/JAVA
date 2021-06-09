@@ -159,10 +159,3 @@ Main article: Generics in Java
 In 2004, generics were added to the Java language, as part of J2SE 5.0. Prior to the introduction of generics, each variable declaration had to be of a specific type. For container classes, for example, this is a problem because there is no easy way to create a container that accepts only specific types of objects. Either the container operates on all subtypes of a class or interface, usually Object, or a different container class has to be created for each contained class. Generics allow compile-time type checking without having to create many container classes, each containing almost identical code. In addition to enabling more efficient code, certain runtime exceptions are prevented from occurring, by issuing compile-time errors. If Java prevented all runtime type errors (ClassCastException's) from occurring, it would be type safe.
 
 In 2016, the type system of Java was proven unsound.
-
-<h2>Reference site</h2>
-https://opentutorials.org/course/1
-  
-  
-  
-https://www.wikipedia.org/
