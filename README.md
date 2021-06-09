@@ -5,24 +5,29 @@
 
 # JAVA
 
-Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers "write once, run anywhere" (WORA), meaning that compiled Java code can run on all platforms that support Java without the need for recompilation. Java applications are typically compiled to bytecode that can run on any Java virtual machine (JVM) regardless of computer architecture. As of 2016, Java is one of the most popular programming languages in use, particularly for client-server web applications, with a reported 9 million developers. Java was originally developed by James Gosling at Sun Microsystems (which has since been acquired by Oracle Corporation) and released in 1995 as a core component of Sun Microsystems' Java platform. The language derives much of its syntax from C and C++, but it has fewer low-level facilities than either of them.
+썬 마이크로시스템즈에서 1995년에 개발한 객체 지향 프로그래밍 언어. 창시자는 제임스 고슬링이다. 2010년에 오라클이 썬 마이크로시스템즈을 인수하면서 Java의 저작권을 소유하였다. 현재는 OpenJDK는 GPL2이나 오라클이 배포하는 Oracle JDK는 상업라이선스로 오라클이 돈독 올랐는지 2019년 1월부터 유료화정책을 강화하고 있다. Java EE는 이클립스 재단의 소유이다. Java 언어는 J2SE 1.4부터는 Java Community Process (JCP)에서 개발을 주도하고 있다.
 
-The original and reference implementation Java compilers, virtual machines, and class libraries were originally released by Sun under proprietary licenses. As of May 2007, in compliance with the specifications of the Java Community Process, Sun relicensed most of its Java technologies under the GNU General Public License. Others have also developed alternative implementations of these Sun technologies, such as the GNU Compiler for Java (bytecode compiler), GNU Classpath (standard libraries), and IcedTea-Web (browser plugin for applets).
+C#과 문법적 성향이 굉장히 비슷하며[1], 그에 비해 2019년 Q3에서 가장 많이 이용하는 언어로 뽑혔다. Java와 JavaScript는 인도와 인도네시아가 다른 것만큼 다르다.
 
-The latest version is Java 11, released on September 25, 2018, which follows Java 10 after only six months in line with the new release schedule. Java 8 is still supported but there will be no more security updates for Java 9. Versions earlier than Java 8 are supported by companies on a commercial basis; e.g. by Oracle back to Java 6 as of October 2017 (while they still "highly recommend that you uninstall"pre-Java 8 from at least Windows computers).
+온라인 상으로 코드를 실행시켜 보고 싶다면 여기로.
 
-<h2>Execution System</h2>
-Java JVM and Bytecode
-Main articles: Java (software platform) and Java virtual machine
-One design goal of Java is portability, which means that programs written for the Java platform must run similarly on any combination of hardware and operating system with adequate runtime support. This is achieved by compiling the Java language code to an intermediate representation called Java bytecode, instead of directly to architecture-specific machine code. Java bytecode instructions are analogous to machine code, but they are intended to be executed by a virtual machine (VM) written specifically for the host hardware. End users commonly use a Java Runtime Environment (JRE) installed on their own machine for standalone Java applications, or in a web browser for Java applets.
+Java로 만들어진 소프트웨어 중 유명한 것으로는 바로 마인크래프트 자바 에디션를 꼽을 수 있다.
 
-Standard libraries provide a generic way to access host-specific features such as graphics, threading, and networking.
+<h2>이름 유래</h2>
+처음엔 고슬링 사무실 앞에 있는 참나무에서 따와 OAK로 지었다가 그대로 상표로 등록하기엔 문제가 생겨서[2] 컨설턴트가 극단적인 방법을 도입, 오후에 개발진들을 회의실에 가둬서(...) 브레인스토밍을 시켰다. "기분이 어떤가요"(Excited!), "무엇이 당신 기분을 좋게 만드나요?"(Java coffee!) 같은 연상적인 작용을 거쳐 여러가지 이름을 정하고, 그 중에서 자바 커피의 Java를 선택했다. Java는 랭킹 중 네 번째. 리스트의 첫 번째 이름은 Silk였고 고슬링이 가장 좋아했던 이름은 Lyrics, 세 번째에 올라왔던 이름이라고.
 
-The use of universal bytecode makes porting simple. However, the overhead of interpreting bytecode into machine instructions made interpreted programs almost always run more slowly than native executables. Just-in-time (JIT) compilers that compile bytecodes to machine code during runtime were introduced from an early stage. Java itself is platform-independent and is adapted to the particular platform it is to run on by a Java virtual machine for it, which translates the Java bytecode into the platform's machine language.
+개발진이 자바산 커피를 좋아해서 그랬다는 설도 있다. 3 Bilion Devices like Java(Coffee) 아이콘도 커피잔 모양. 또는 개발자의 이름인 James Gosling, Arthur Van Hoff, Andy Bechtolsheim의 머릿글자를 따온 것이라는 설도 있고, 그냥 사전을 펼쳤는데 눈에 들어온 이름이었다는 설도 있다.
 
-<h2>Performance</h2>
-Main article: Java performance
-Programs written in Java have a reputation for being slower and requiring more memory than those written in C++. However, Java programs' execution speed improved significantly with the introduction of just-in-time compilation in 1997/1998 for Java 1.1, the addition of language features supporting better code analysis (such as inner classes, the StringBuilder class, optional assertions, etc.), and optimizations in the Java virtual machine, such as HotSpot becoming the default for Sun's JVM in 2000. With Java 1.5, the performance was improved with the addition of the java.util.concurrent package, including lock free implementations of the ConcurrentMaps and other multi-core collections, and it was improved further with Java 1.6.
+<h2>분류</h2>
+Java는 크게 다음과 같은 4가지 에디션으로 나뉜다.
+Java SE(Java Standard Edition / J2SE)
+대부분의 사람들이 가장 많이 접하는 표준 에디션. Java의 핵심 API와 기능들을 제공한다. JDK 항목도 참고.
+Jakarta EE, 구 Java EE(Java Enterprise Edition / J2EE)
+기업에서 운영하는 서버 페이지에 특화된 에디션이다. JSP와 서블릿을 비롯한 웹 애플리케이션 서버에 관련된 기술들이 포함되어 있다.
+Java ME(Java Micro Edition / J2ME)
+PDA나 셋톱박스, 센서 등의 임베디드 시스템 환경에 특화된 에디션이다.
+JavaFX
+데스크톱 애플리케이션 개발 및 배포를 위한 에디션으로, 크로스플랫폼 이식과 GUI 라이브러리를 공급한다.
 
 Non-JVM
 Some platforms offer direct hardware support for Java; there are microcontrollers that can run Java bytecode in hardware instead of a software Java virtual machine,[52] and some ARM based processors could have hardware support for executing Java bytecode through their Jazelle option, though support has mostly been dropped in current implementations of ARM.
