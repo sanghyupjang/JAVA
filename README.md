@@ -29,138 +29,75 @@ PDA나 셋톱박스, 센서 등의 임베디드 시스템 환경에 특화된 �
 JavaFX
 데스크톱 애플리케이션 개발 및 배포를 위한 에디션으로, 크로스플랫폼 이식과 GUI 라이브러리를 공급한다.
 
-Non-JVM
-Some platforms offer direct hardware support for Java; there are microcontrollers that can run Java bytecode in hardware instead of a software Java virtual machine,[52] and some ARM based processors could have hardware support for executing Java bytecode through their Jazelle option, though support has mostly been dropped in current implementations of ARM.
+<h2>C, C++와의 비교</h2>
 
-Automatic memory management
-Java uses an automatic garbage collector to manage memory in the object lifecycle. The programmer determines when objects are created, and the Java runtime is responsible for recovering the memory once objects are no longer in use. Once no references to an object remain, the unreachable memory becomes eligible to be freed automatically by the garbage collector. Something similar to a memory leak may still occur if a programmer's code holds a reference to an object that is no longer needed, typically when objects that are no longer needed are stored in containers that are still in use. If methods for a nonexistent object are called, a "null pointer exception" is thrown.
+기존의 C에 객체지향 기능을 추가하다 보니 언어의 사용에 있어 저수준과 고수준의 개념이 충돌하는 부분이 많았던 C++과는 다르게 아예 처음부터 객체지향 언어로 개발되었다. 다만 많은 사람들이 착각하는 부분인데, Java는 엄밀히 말하면 완벽한 객체지향 언어가 아니다. 원시(Primitive) 타입은 객체로 취급하지 않기 때문. 모든 것을 객체로 취급하는 언어를 순수 객체지향(Pure object-oriented)이라 하며, 이를 지원하는 언어로는 Python, Ruby, Smalltalk등이 있다.
 
-One of the ideas behind Java's automatic memory management model is that programmers can be spared the burden of having to perform manual memory management. In some languages, memory for the creation of objects is implicitly allocated on the stack or explicitly allocated and deallocated from the heap. In the latter case, the responsibility of managing memory resides with the programmer. If the program does not deallocate an object, a memory leak occurs. If the program attempts to access or deallocate memory that has already been deallocated, the result is undefined and difficult to predict, and the program is likely to become unstable or crash. This can be partially remedied by the use of smart pointers, but these add overhead and complexity. Note that garbage collection does not prevent "logical" memory leaks, i.e., those where the memory is still referenced but never used.
+C, C++, Java의 차이점을 말하자면, C는 포인터 등을 활용한 저수준 시스템 프로그래밍에[9] 강점을 가지며, C++는 C의 그런 강점을 거의 그대로 가져오면서 거기에 객체 지향이나 일반화 프로그래밍과 같은 멀티 패러다임을 지원하고자 하는 시도[10]에서 탄생하였다. 이렇게 고수준과 저수준의 개념을 모두 포함하려다 보니 다른 언어에 비해서 상당히 복잡해졌다. 게다가 최신 프로그래밍 환경을 지원하기 위해 지속적으로 개정되고 있는 모던 C++는 변화의 폭이 커서, 새로운 기능을 전부 제대로 다룰 줄 아는 프로그래머는 비교적 적다는 평이 널리 받아들여지고 있다. 이와는 대조적으로 Java는 C++의 초기 발전 방향과는 달리 안정성을 위해 포인터라는 강력한 로우 레벨 기능을 포기하고 가비지 컬렉터를 내장하며, 고수준의 객체지향 부분을 잘 구현하는 것에 집중하는 방식으로 언어가 복잡해지는 것을 방지하였다.
 
-Garbage collection may happen at any time. Ideally, it will occur when a program is idle. It is guaranteed to be triggered if there is insufficient free memory on the heap to allocate a new object; this can cause a program to stall momentarily. Explicit memory management is not possible in Java.
+수많은 C계열 프로그래밍 언어가 그렇듯이, C/C++와 비슷한 문법 구조를 가지고 있다. 그러면서도 Java가 C/C++보다 훨씬 더 널리 쓰이는 분야가 많이 존재한다. 웹 애플리케이션 백엔드와 안드로이드 앱이 대표적인 사례. 또한 아파치 소프트웨어 재단에서 개발하는 수많은 오픈 소스 소프트웨어들이 Java로 만들어졌다. 하지만 Java 프로그램에서 속도가 매우 중요시되는 부분은 따로 떼어서 C/C++로 개발하기도 한다. 제작하고자 하는 프로그램의 생산성과 성능을 적절히 고려하여 선택하는 것이 현명하다.
 
-Java does not support C/C++ style pointer arithmetic, where object addresses and unsigned integers (usually long integers) can be used interchangeably. This allows the garbage collector to relocate referenced objects and ensures type safety and security.
+<h2>특징</h2>
 
-As in C++ and some other object-oriented languages, variables of Java's primitive data types are either stored directly in fields (for objects) or on the stack (for methods) rather than on the heap, as is commonly true for non-primitive data types (but see escape analysis). This was a conscious decision by Java's designers for performance reasons.
+Java의 가장 큰 특징은 플랫폼에 독립적인 언어라는 점이다. 소스 코드를 기계어로 직접 컴파일하여 링크하는 C/C++의 컴파일러와 달리 자바 컴파일러는 바이트코드인 클래스 파일(.class)을 생성하고, 이 파일의 바이트코드를 읽은 뒤 기계어로 바꾸어 실행하는 것은 Java Virtual Machine(JVM)이다.
 
-Java contains multiple types of garbage collectors. By default, HotSpot uses the parallel scavenge garbage collector. However, there are also several other garbage collectors that can be used to manage the heap. For 90% of applications in Java, the Concurrent Mark-Sweep (CMS) garbage collector is sufficient. Oracle aims to replace CMS with the Garbage-First collector (G1).
+예를 들어 C 계열 언어들은 윈도우에서 빌드한 프로그램을 그대로 리눅스나 macOS에서 실행하려 하면 일반적으로 오류가 나지만 Java로 작성 된 프로그램은 플랫폼에 맞는 JVM만 설치되어 있다면 문제 없이 동작한다. 이는 Java 코드 자체가 플랫폼이 아닌 가상머신에 종속적이라는 점, 그리고 프로그램 실행의 주체가 운영체제가 아닌 JVM이라는 점 때문이며 이러한 점을 통틀어 Java는 플랫폼 종속성이 낮은 언어라고 표현한다.
 
-<h2>Syntax</h2>
-Main article: Java syntax
+JVM 기반의 프로젝트에서는 하나의 언어만을 고집하지 않는다. 함수형 언어가 유리(최근 유행하는 빅데이터 등)한 부분은 Scala로 작업하며, 견고한 인터페이스와 대규모 통합이 필요한 곳은 Java로 작업한 뒤 이들을 서로 합쳐서 운영하는 게 가능하다. (Java에서 만든 객체를 Scala에서 그대로 사용할 수 있다.) 안드로이드 쪽에서는 크리티컬하지 않은 부분부터 Kotlin으로 코드를 교체하는 경우도 많아지고 있다.
 
-Dependency graph of the Java Core classes (created with jdeps and Gephi). The most frequently used classes Object and String appear in the centre of the diagram.
-The syntax of Java is largely influenced by C++. Unlike C++, which combines the syntax for structured, generic, and object-oriented programming, Java was built almost exclusively as an object-oriented language. All code is written inside classes, and every data item is an object, with the exception of the primitive data types, (i.e. integers, floating-point numbers, boolean values, and characters), which are not objects for performance reasons. Java reuses some popular aspects of C++ (such as the printf method).
+실제 현업에서는 Java를 비롯한 여러가지 인기 언어가 자주 사용되므로 장단점을 잘 알아두는게 좋다. 다른 언어에 대해 맹목적으로 찬양/비판하는 태도보다는 환경이나 주어진 작업의 특성에 따라 적합한 언어를 선택할 수 있는 노하우가 필요하다.
 
-Unlike C++, Java does not support operator overloading or multiple inheritance for classes, though multiple inheritance is supported for interfaces.
+PC에서 자바 런너 업데이트를 할 때 뜨는 창에 '30억개 기기에서 Java 사용'이라는 문구가 나온다.
 
-Java uses comments similar to those of C++. There are three different styles of comments: a single line style marked with two slashes (//), a multiple line style opened with /* and closed with */, and the Javadoc commenting style opened with /** and closed with */. The Javadoc style of commenting allows the user to run the Javadoc executable to create documentation for the program and can be read by some integrated development environments (IDEs) such as Eclipse to allow developers to access documentation within the IDE.
+<h2>수많은 개발자와 레퍼런스</h2>
 
+오늘날 프로그램의 덩치와 다루는 것들이 크고 복잡해지면서 생산성과 퍼포먼스 문제가 생기게 되었는데, C/C++ 같은 언어는 생산성이 너무 떨어지고 관리도 힘들어서 프로그램이 커지면 커질수록 작업이 힘들어지게 된다. 그리고 아무리 컴퓨터 하드웨어가 발달한다고 해도 성능이 더 좋아지면 점점 더 복잡한 것을 다루고, 그것이 새로운 표준이 되면서 하드웨어의 속도 향상이 무색해지기 때문이다.
 
-```
+그런데, 그 와중에 나타난 게 바로 Java다. C/C++와 비슷한 문법으로 진입 장벽도 낮고, 객체 지향을 적극적으로 사용하며, 로우 레벨 작업들을 자동으로 처리해 주는 하이 레벨 언어이면서, 퍼포먼스도 다른 하이 레벨 언어들에 비해 빠른 편이다. 거기에 호환성까지! 등장하자마자 순식간에 대세가 된 것도 무리는 아니다. 객체지향 등이 일반화되면서 프로그래밍 환경도 점차 중요한 개념을 언어 안으로 숨기고 사용자에겐 그것을 간편히 다룰 수 있는 인터페이스만 제공하는 추세로 흘러가고 있는데, Java는 여기에 정확하게 부합하는 언어였던 것. 다만 최근 인기를 끌고 있는 Python이나 Go 같은 언어에 비하면 Java의 생산성은 상대적으로 낮은 편이다.
 
-"Hello world" example
-The traditional "Hello, world!" program can be written in Java as:
+<h2>기기 호환성</h2>
 
-class HelloWorldApp {
-    public static void main(String[] args) {
-        System.out.println("Hello World!"); // Prints the string to the console.
-    }
-}
+장점으로는, 해당 운영체제에 Java Virtual Machine(JVM)을 설치하면 Java로 만든 프로그램은 어떤 컴퓨터에서도 완벽히 똑같이 동작한다. 가상머신이 각각의 운영체제에 맞춰서 결과적으로 완벽히 똑같이 돌아갈 수 있도록 제작되는 덕. 가상머신 없는 운영체제라면 아예 Java 프로그램을 사용하지 못하겠지만, 썬 마이크로시스템즈는 주요 OS용의 가상 머신을 발표하고 있고, IBM, 휴렛팩커드 등의 회사는 직접 자사 운영체제용 JDK/JVM을 제작하여 발표하며, 이들과 상관없이 독립적으로 특화된 성능향상 기능을 가진 JVM을 만들어서 발표하는 회사도 존재한다. 그래서 이 부분은 보통 단점으로 꼽히지 않는다. 오히려 여러 운영체제에 발 벌리는 업체라면 윈도우용, 맥용 등을 따로 제작할 필요 따위가 없이 "그냥 하나 만들면 끝!"이라고 Java 초창기에 홍보되었다.
 
-```
+그러나 다른 크로스 플랫폼 언어들과 마찬가지로 각 플랫폼마다 미묘하게 기능이나 작동에 차이가 있는 부분이 결국은 존재하기 때문에, 이러한 부분을 고려하지 않고 작성된 프로그램을 그대로 다른 데에서 돌릴 때에 문제가 발생할 가능성이 존재한다. JVM의 장점은 그나마 이런 부분들이 다른 언어에 비해서 매우 적은 편이라는 점이다. 이런 경우, 대부분 크로스 플랫폼으로 작성된 코드가 그러하듯 타겟 플랫폼을 인지하여 특정 플랫폼에서는 다르게 동작하게 하는 식으로 코딩을 하게 된다. 주로 java.nio 패키지에 속한 API 에서 이러한 경우를 발견할 수 있으며, OS X 에서만 일부 특이하게 동작하는 MIDI 관련 API 또한 이러한 경우에 속한다. Java의 모토는 Write once, run everywhere(한 번 짜서, 어디서나 실행하라)인데 프로그래머들은 이를 비꼬아 Write once, test everywhere(한 번 짜서, 모든 플랫폼에서 테스트하라)라고 말하곤 한다.
 
-Source files must be named after the public class they contain, appending the suffix .java, for example, HelloWorldApp.java. It must first be compiled into bytecode, using a Java compiler, producing a file named HelloWorldApp.class. Only then can it be executed, or "launched". The Java source file may only contain one public class, but it can contain multiple classes with other than public access modifier and any number of public inner classes. When the source file contains multiple classes, make one class "public" and name the source file with that public class name.
+C나 C++에서도 크로스 플랫폼 형태로 소스코드를 작성하는 것이 가능하기는 했지만, 개발자가 타겟 플랫폼과 해당 플랫폼용 바이너리 코드를 생성하는 컴파일러에 대해서 잘 이해하고 나서 #define, #if 등 전처리기를 써서 각 타겟 플랫폼에 맞게 동작하도록 코드를 직접 작성해줘야 했다. 이와 달리, Java는 단일 소스코드를 컴파일하여 생성된 바이트코드 클래스 파일을 JVM이 존재하는 환경이라면 어디서나 (대부분은) 추가 컴파일이나 수정작업 없이 그대로 똑같이 실행할 수 있다는 점이 차이점이다. 기업 입장에서 컴파일된 바이너리가 크로스 플랫폼을 보장해주는 Java는 매력적인 언어였다.
 
-A class that is not declared public may be stored in any .java file. The compiler will generate a class file for each class defined in the source file. The name of the class file is the name of the class, with .class appended. For class file generation, anonymous classes are treated as if their name were the concatenation of the name of their enclosing class, a $, and an integer.
+JVM 위에서 구동 가능한 언어는 Java 외에도 존재하는데, 이 언어들을 사용하면 Java와 동일한 수준의 호환성을 구현할 수 있다. 구글에서 안드로이드 개발의 차세대 언어로 밀어주는 Kotlin이 대표적인 케이스다. Java의 개발 주체인 Oracle에서 개발하는 GraalVM이라는 한국어에서 자주 쓰이는 어떤 욕설과 관계 없다 프레임워크도 있다. 이 프레임워크에서는 C++도 JVM 위에서 실행하는 것이 가능하다.
 
-The keyword public denotes that a method can be called from code in other classes, or that a class may be used by classes outside the class hierarchy. The class hierarchy is related to the name of the directory in which the .java file is located. This is called an access level modifier. Other access level modifiers include the keywords private and protected.
+요즘은 하드웨어와 밀접하게 연동되어야 하는 프로그램이 아니라면, 또는 메인 로직은 서버에서 돌아가고 클라이언트에서는 인터페이스만 제공해주면 되는 경우라면 JVM보다는 웹 기술을 이용한 방식이 더 주목받고 있다. 아예 어디에서나 동일한 동작을 보증하는 웹 사이트의 형식으로 서비스를 하거나, 네이티브 앱의 UI가 필요한 경우에는 React Native 또는 Flutter 등의 프레임워크를 이용하는 경우가 많다. 전자는 웹 개발에서 주로 쓰이는 JavaScript를 이용하고, 후자는 구글에서 웹 프로그래밍의 용도로 만든 Dart라는 언어를 이용한다. 이 외에 게임이나 3D 렌더링이 필요한 앱의 경우 게임 엔진을 이용한다.
 
-The keyword static in front of a method indicates a static method, which is associated only with the class and not with any specific instance of that class. Only static methods can be invoked without a reference to an object. Static methods cannot access any class members that are not also static. Methods that are not designated static are instance methods and require a specific instance of a class to operate.
+<h2>안정성</h2>
 
-The keyword void indicates that the main method does not return any value to the caller. If a Java program is to exit with an error code, it must call System.exit() explicitly.
+다른 언어에 비해 높은 안정성을 꼽고 있다. 우선 C나 C++에 안정성 문제가 제기되는 포인터 연산자[13] 및 메모리 직접접근 함수들을 지원하지 않는다. 여기에 C++과는 다르게 다중 상속을 허용하지 않는다. 이는 객체지향의 특성 중 하나인 '상속'의 자유도를 확 떨어트리는 것이기에 언뜻 보기에는 객체지향적 관점에 위배되는 것처럼 보일 수 있으나, 반대로 오히려 이게 더 객체지향적이라고 볼 수도 있다. 객체지향의 목적 자체가 재사용을 통한 생산성의 향상과 관리 상의 이점인데, 다중 상속은 잘못 사용할 시 극도로 복잡하게 꼬인 프로그램을 만들 위험성을 갖고 있다. 물론 코드 관리의 측면에서도 다중상속에 의해 발생하는 문제는 좋지 않다. 수준 높은 프로그래머라면 이 문제도 잘 해결할 수 있지만, Java는 아예 미연에 방지하기 위해 다중상속을 언어 스펙에서 제거하는 방법을 택했다.
 
-The method name "main" is not a keyword in the Java language. It is simply the name of the method the Java launcher calls to pass control to the program. Java classes that run in managed environments such as applets and Enterprise JavaBeans do not use or need a main() method. A Java program may contain multiple classes that have main methods, which means that the VM needs to be explicitly told which class to launch from.
+메모리를 대용량으로 사용하는 프로그램에서 상대적으로 C/C++보다 안정적인 모습을 보일 때도 있는데, 이런 경우에 JVM이 시작될 때 필요한 메모리를 먼저 통으로 잡아버리기 때문이다. 메모리를 자주 할당하거나 해제하는 C/C++ 프로그램은 오히려 Java보다 성능이 느릴 수 있다. 다만 이는 메모리 할당자 없이 매번 힙 영역 메모리를 운영체제로부터 할당받는 경우에 해당하는 말이고, 실제 C/C++ 프로젝트에서는 jemalloc 등 메모리 할당자 라이브러리를 사용하거나 메모리 할당자를 직접 구현하여 이런 문제를 해결하는 것이 일반적이다.
 
-The main method must accept an array of String objects. By convention, it is referenced as args although any other legal identifier name can be used. Since Java 5, the main method can also use variable arguments, in the form of public static void main(String... args), allowing the main method to be invoked with an arbitrary number of String arguments. The effect of this alternate declaration is semantically identical (to the args parameter which is still an array of String objects), but it allows an alternative syntax for creating and passing the array.
+<h2>개발환경</h2>
 
-The Java launcher launches Java by loading a given class (specified on the command line or as an attribute in a JAR) and starting its public static void main(String[]) method. Stand-alone programs must declare this method explicitly. The String[] args parameter is an array of String objects containing any arguments passed to the class. The parameters to main are often passed by means of a command line.
+ava에 특정한 라이브러리를 가미해서 웹에서 돌릴 수 있게 한 것이 Java Applet이다. 애플릿 특유의 제약으로 인해 ActiveX보다는 훨씬 안전하다는 이유로 물 건너에서는 인터넷 뱅킹이나 결제용도로 사용하기도 한다. 근데 상대적으로 안전하다는 것일 뿐, 애플릿을 사용한 결제시스템도 툭하면 뚫려서 문제가 발생하곤 한다(…). 더군다나 iOS와 안드로이드에서는 되지 않는다. 게다가 크롬과 파이어폭스 등의 브라우저들이 NPAPI 지원 중단 선언을 하고, Java 9부터 애플릿의 개발이 중단되면서 결국 수명이 끝나게 되었다. 이러한 점은 자바 애플릿만이 아닌 다른 대부분의 리치 인터넷 애플리케이션들의 또한 마찬가지이다.
 
-Printing is part of a Java standard library: The System class defines a public static field called out. The out object is an instance of the PrintStream class and provides many methods for printing data to standard out, including println(String) which also appends a new line to the passed string.
+웹 애플리케이션 제작을 위해 Java 언어를 사용하는 규격으로 Java 서블릿과 JSP(Java 서버 페이지)가 있다. 주로 기업에서 Spring과 함께 사용한다. 개인 웹호스팅에서는 이를 지원하는 경우는 많지 않다. 그러나 최근 Java를 지원하는 여러 클라우드 컴퓨팅 서비스가 싼 가격에 등장하고 있고, Java 뿐만이 아닌 JVM 언어를 이러한 환경에서 구동하는 사례가 늘고 있다.
 
-The string "Hello World!" is automatically converted to a String object by the compiler.
+Java Development Kit(Java 개발 도구)을 설치하면 javac라는 컴파일러가 제공된다. 하지만 통합 개발 환경은 제공해 주지 않기 때문에, 반드시 별도의 개발용 프로그램을 써야 한다. 대표적으로 이클립스, 넷빈즈, IntelliJ IDEA 등이 있다. 만약 이것들을 안 쓰겠다고 한다면, 당신에게는 메모장과 javac.exe가 있을 뿐이다. 그리고 Java는 IDE 없이 타이핑만으로 짜기엔 굉장히 불편한 언어라는 것을 명심하자. 실전 Java 개발을 할 때 프로젝트에 필요한 라이브러리 관리나 프로젝트 결과물 배포 등 프로젝트 빌드 관리를 위한 도구로는 아파치 소프트웨어 재단에서 만든 Ant와 Maven, 그 중에서도 Maven이 많이 사용되고 있다. 최근에는 이 두 가지의 단점을 보완한 Gradle이 각광을 받고 있으며 안드로이드 프로젝트에서는 기본으로 쓰인다.
 
-<h2>Example with methods</h2>
-This is an example of a single line comment using two slashes
+TDD 개발을 위한 방법으로는 Jenkins를 통한 CI 관리, SonarLint/SonarQube를 통한 코드 분석, Maven을 통한 빌드 관리, JaCoCo를 통한 Code Coverage 관리 등이 있다.
 
- This is an example of a multiple line comment using the slash and asterisk.
- This type of comment can be used to hold a lot of information or deactivate
- code, but it is very important to remember to close the comment. 
+<h2> JVM 언어</h2>
 
-package fibsandlies;
-import java.util.HashMap;
+이외에 Java와 똑같이 Java 바이트 코드를 생성하지만 언어 규격이 다른 Scala와 Clojure라는 언어들도 있다. Scala는 'Scalable Language'에서 따왔는데, Java와 비슷한 부분이 많으며 Java API를 그대로 가져다 쓸 수도 있다. 또한, syntactic sugar가 많고 함수형 프로그래밍의 여러 가지 요소들을 가져와서 Java에 비해 생산성도 높다. 일례로 일일이 타입을 명시하지 않고 var x === 1.5와 같이 넣으면 알아서 float 형으로 추론해준다. 또, switch-case의 확장판이라 할 수 있는 패턴 매칭을 지원하며 클로저도 지원된다. 단점으로는 이런 고수준-고생산성의 언어에서 많이 볼 수 있듯이 같은 Java 코드에 비해 약간 느리다. Clojure는 Java 플랫폼에서 동작하는 LISP의 방언으로 설계되었으며 Common Lisp와 Scheme과 함께 주요 LISP 방언 중 하나로 꼽힌다. 이 언어도 마찬가지로 Java API를 가져다 쓸 수 있다.
 
+Java 6부터 Scripting API라는 것이 추가되었다. JVM 언어 구현체에서 javax.scripting 관련 API를 제공하면 Java 코드에서 동적으로 인터프리터를 생성하고 연동하여 사용할 수 있게 해주는 표준 API이다.
 
- * This is an example of a Javadoc comment; Javadoc can compile documentation
- * from this text. Javadoc comments must immediately precede the class, method, or field being documented.
- 
-```
+<h2> JVM 언어혼동하기 쉬운 것들</h2>
 
-public class FibCalculator extends Fibonacci implements Calculator {
+자바스크립트(JavaScript)
 
-    private static Map<Integer, Integer> memoized = new HashMap<Integer, Integer>();
+JavaScript는 Java와는 아무 상관도 없다. 넷스케이프사에서 Mocha, LiveScript로 개발하던 스크립트 언어를 1996년 전후 열풍이던 Java의 유명세에 묻어가기위해 Sun에서 상표권을 라이선스해 JavaScript라고 이름붙였을 뿐이다. 이름 하나 생각없이 잘못 붙여서 여러 사람을 지금도 헷갈리게 만드는 대표적인 케이스.
+이름을 제외한 연관성은 희박한 편이여서 공통점이 아닌 차이점을 나열하는게 훨씬 빠를 정도다. 같은 C-족 언어이긴 하지만 문법조차 별로 비슷하지도 않으며, 사용되는 라이브러리나 개념 또한 많이 다르다. 기초 패러다임상 당연한 요소들을 제외하고 나면 둘의 유사점은 오직 객체지향 뿐인데 그 마저도 JavaScript는 프로토타입 베이스라 클래스를 쓰는 Java와 많이 다르다 [ES6]. 또한 Java는 정적 타입 언어인데 반해 JavaScript는 동적 타입 언어다. 웹 서버용 파생 규격 역시 JSP와 Node.js로 다르다.
+떠도는 말로 'Java와 JavaScript의 차이는 인도와 인도네시아의 차이와 같다'라고도 한다. 왜냐하면 인도와 인도네시아가 이름만 비슷하고 서로 다른 국가이듯이 Java와 JavaScript도 다른 프로그래밍 언어이기 때문이다.
 
-   
-     * The main method written as follows is used by the JVM as a starting point for the program.
-     
-    public static void main(String[] args) {
-        memoized.put(1, 1);
-        memoized.put(2, 1);
-        System.out.println(fibonacci(12)); //Get the 12th Fibonacci number and print to console
-    }
+Visual J++/Visual J#
 
-    
-     * An example of a method written in Java, wrapped in a class.
-     * Given a non-negative number FIBINDEX, returns
-     * the Nth Fibonacci number, where N equals FIBINDEX.
-     * @param fibIndex The index of the Fibonacci number
-     * @return The Fibonacci number
-     
-    public static int fibonacci(int fibIndex) {
-        if (memoized.containsKey(fibIndex)) {
-            return memoized.get(fibIndex);
-        } else {
-            int answer = fibonacci(fibIndex - 1) + fibonacci(fibIndex - 2);
-            memoized.put(fibIndex, answer);
-            return answer;
-        }
-    }
-}
-
-```
-
-<h2>Special classes</h2>
-Applet
-Main article: Java applet
-Java applets were programs that were embedded in other applications, typically in a Web page displayed in a web browser. The Java applet API is now deprecated since Java 9 in 2017.
-
-<h2>Servlet</h2>
-Main article: Java servlet
-Java servlet technology provides Web developers with a simple, consistent mechanism for extending the functionality of a Web server and for accessing existing business systems. Servlets are server-side Java EE components that generate responses (typically HTML pages) to requests (typically HTTP requests) from clients.
-
-The Java servlet API has to some extent been superseded by two standard Java technologies for web services:
-
-the Java API for RESTful Web Services (JAX-RS 2.0) useful for AJAX, JSON and REST services, and
-the Java API for XML Web Services (JAX-WS) useful for SOAP Web Services.
-JavaServer Pages
-Main article: JavaServer Pages
-JavaServer Pages (JSP) are server-side Java EE components that generate responses, typically HTML pages, to HTTP requests from clients. JSPs embed Java code in an HTML page by using the special delimiters <% and %>. A JSP is compiled to a Java servlet, a Java application in its own right, the first time it is accessed. After that, the generated servlet creates the response.
-
-<h2>Swing application</h2>
-Main article: Swing (Java)
-Swing is a graphical user interface library for the Java SE platform. It is possible to specify a different look and feel through the pluggable look and feel system of Swing. Clones of Windows, GTK+, and Motif are supplied by Sun. Apple also provides an Aqua look and feel for macOS. Where prior implementations of these looks and feels may have been considered lacking, Swing in Java SE 6 addresses this problem by using more native GUI widget drawing routines of the underlying platforms.
-
-<h2>Generics</h2>
-Main article: Generics in Java
-In 2004, generics were added to the Java language, as part of J2SE 5.0. Prior to the introduction of generics, each variable declaration had to be of a specific type. For container classes, for example, this is a problem because there is no easy way to create a container that accepts only specific types of objects. Either the container operates on all subtypes of a class or interface, usually Object, or a different container class has to be created for each contained class. Generics allow compile-time type checking without having to create many container classes, each containing almost identical code. In addition to enabling more efficient code, certain runtime exceptions are prevented from occurring, by issuing compile-time errors. If Java prevented all runtime type errors (ClassCastException's) from occurring, it would be type safe.
-
-In 2016, the type system of Java was proven unsound.
+Visual J++은 마이크로소프트에서 Java를 변형하여 윈도우 전용으로 만든 언어. 위의 JavaScript는 이름이 다른거지만 이건 Java 자체를 윈도우에 맞도록 변형한 것이다. 이 때문에 Java 가상머신 없이 윈도우에서 네이티브로 돌아가지만, 다른 플랫폼에서는 전혀 돌아가지 않는다. 거기다 썬 마이크로시스템즈의 허락없이 마구 변형해서 썼기 때문에 소송크리를 먹고 개발이 중단되었다.
+이후 윈도우의 프로그램이 닷넷으로 넘어가면서 닷넷 기반의 Visual J#도 만들었다. Visual Studio 2005에 포함되었지만 이것도 개발이 중단되었다. 이때는 썬이 소송하지도 않았는데 중단된 것을 보면 시장성이 없었던 듯 하다. 이미 이 때는 C#이 어느 정도 자리를 잡았기 때문일 수도 있고.
