@@ -80,7 +80,7 @@ javac 명령어는 /jdk 디렉토리 안에 들어 있지만, 설치 중에 시�
 - 1단계. 간단한 자바 프로그램 작성
 Intro.java라는 새로운 텍스트 파일을 생성하고, 그것을 문서 폴더 같은 곳에 저장하라. 그 다음에는 간단한 자바 프로그램인 목록 1의 코드를 추가하라.
 
-목록 1. Intro.java
+```목록 1. Intro.java
 public class Intro {
 
 public static void main(String[] args) {
@@ -88,14 +88,14 @@ System.out.println("Welcome to the JDK!");
 }
 
 }
-
+```
 - 2단계: JDK를 사용해 컴파일하기
 텍스트 파일을 실행 가능한 프로그램으로 만들기 위해 JDK 컴파일러를 사용하라. 자바로 컴파일 된 코드를 바이트코드(Bytecode)라 부르며, .class 확장자가 붙는다.
 
 자바 컴파일러의 약자인 javac 명령을 사용하게 될 것이다. 명령 셸에 명령어의 전체 경로를 입력하고, Intro.java 파일을 넘겨라. 필자의 시스템에서는 목록 2처럼 보인다.
 
 목록 2. JDK를 사용해 컴파일하기
-"C:\Program Files\Java\jdk-10.0.1\bin\javac.exe" Intro.java
+```"C:\Program Files\Java\jdk-10.0.1\bin\javac.exe" Intro.java```
 
 이렇게 하면, 컴파일에 성공할 것이다. javac는 성공 메시지를 표시하지 않는다. 단지 새로운 파일만 출력할 것이다. 오류는 콘솔에 표시된다.
 
@@ -105,9 +105,9 @@ Intro.java와 같은 디렉토리에서 Intro.class 파일을 볼 수 있을 것
 java Intro를 입력해 실행할 수 있으며, 목록 3의 결과가 보여질 것이다. 이 명령을 입력할 때 .class를 포함하지 않음에 유의하라.
 
 목록 3. Intro.class 실행
-C:\Users\mtyson\Documents>java Intro
+```C:\Users\mtyson\Documents>java Intro
 Welcome to the JDK!
-
+```
 jar 명령어
 javac은 JDK의 스타지만, /bin 디렉토리에는 필요한 다른 도구들이 들어있다. javac 다음으로 가장 유망한 것은 jar 도구일지도 모르겠다.
 
@@ -117,12 +117,12 @@ Intro.class를 jar 파일로 변환해보자.
 Intro.java를 저장한 위치로 되돌아가서, 목록 4에 보여진 명령어를 입력하라.
 
 목록 4. JAR 파일 생성
-C:\Users\mtyson\Documents>"c:\Program Files\Java\jdk-10.0.1\bin\jar.exe" --create --file intro.jar Intro.class
+```C:\Users\mtyson\Documents>"c:\Program Files\Java\jdk-10.0.1\bin\jar.exe" --create --file intro.jar Intro.class```
 
 jar 실행
 이제 해당 디렉토리에서 Intro.jar 파일을 볼 수 있을 것이다. 이를 클래스경로에 추가하고 다음과 같이 안에 있는 프로그램을 실행함으로써 .jar를 활용할 수 있다:
 
-java -cp intro.jar Intro
+```java -cp intro.jar Intro```
 
 -cp 스위치는 자바에게 해당 jar를 클래스경로에 추가하라고 지시한다. 이렇게 작은 프로그램에 대해서는 .jar 파일이 과한 것이지만, 프로그램의 크기가 늘어나고 써드파티 패키지에 의존해감에 따라 필수적이 된다.
 
