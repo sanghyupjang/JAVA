@@ -106,7 +106,10 @@ Intro.class를 jar 파일로 변환해보자.
 Intro.java를 저장한 위치로 되돌아가서, 목록 4에 보여진 명령어를 입력하라.
 
 <H3>●목록 4. JAR 파일 생성</h3>
-```C:\Users\mtyson\Documents>"c:\Program Files\Java\jdk-10.0.1\bin\jar.exe" --create --file intro.jar Intro.class```
+```
+C:\Users\mtyson\Documents>"
+c:\Program Files\Java\jdk-10.0.1\bin\jar.exe" --create --file intro.jar Intro.class
+```
 
 <H3>●jar 실행</h3>
 이제 해당 디렉토리에서 Intro.jar 파일을 볼 수 있을 것이다. 이를 클래스경로에 추가하고 다음과 같이 안에 있는 프로그램을 실행함으로써 .jar를 활용할 수 있다:
