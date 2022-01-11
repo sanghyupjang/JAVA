@@ -2,11 +2,11 @@
 
 <h3>●설치 환경</h3>
 
-Java : https://www.java.com/ko/ ( 자바 )
+#Java : https://www.java.com/ko/ ( 자바 )#
 
-Eclipse : https://www.eclipse.org/downloads/ ( 자바 코딩 에디터 )
+#Eclipse : https://www.eclipse.org/downloads/ ( 자바 코딩 에디터 )#
 
-Java SE Development Kit : https://www.oracle.com/java/technologies/downloads/ ( JVM, JRE, JDK, 자바 가상 머신 자바 런타임 환경 자바 패키지)
+#Java SE Development Kit : https://www.oracle.com/java/technologies/downloads/ ( JVM, JRE, JDK, 자바 가상 머신 자바 런타임 환경 자바 패키지)#
 
 JDK : 자바 개발 키트(Java Development Kit, JDK)는 자바 애플리케이션을 구축하기 위한 핵심 플랫폼 구성요소다. 이 중심에는 자바 컴파일러(Compiler)가 있다.
 JDK는 자바 가상 머신(Java Virtual Machine, JVM), 그리고 자바 런타임 환경(Java Runtime Environment, JRE)과 함께 자바 프로그래밍에 사용되는 3대 핵심 기술 패키지 가운데 하나다. 이 3가지 기술이 어떻게 연결되어 있는지, 또한 어떻게 다른지 구별하는 것이 중요하다.
