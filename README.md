@@ -1,5 +1,4 @@
 
-JAVA
 
 <h3>●설치 환경</h3>
 
@@ -85,7 +84,8 @@ System.out.println("Welcome to the JDK!");
 자바 컴파일러의 약자인 javac 명령을 사용하게 될 것이다. 명령 셸에 명령어의 전체 경로를 입력하고, Intro.java 파일을 넘겨라. 필자의 시스템에서는 목록 2처럼 보인다.
 
 목록 2. JDK를 사용해 컴파일하기
-```"C:\Program Files\Java\jdk-10.0.1\bin\javac.exe" Intro.java```
+```"C:\Program Files\Java\jdk-10.0.1\bin\javac.exe" Intro.java
+```
 
 이렇게 하면, 컴파일에 성공할 것이다. javac는 성공 메시지를 표시하지 않는다. 단지 새로운 파일만 출력할 것이다. 오류는 콘솔에 표시된다.
 
