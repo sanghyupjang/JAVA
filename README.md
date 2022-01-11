@@ -84,8 +84,7 @@ System.out.println("Welcome to the JDK!");
 자바 컴파일러의 약자인 javac 명령을 사용하게 될 것이다. 명령 셸에 명령어의 전체 경로를 입력하고, Intro.java 파일을 넘겨라. 필자의 시스템에서는 목록 2처럼 보인다.
 
 목록 2. JDK를 사용해 컴파일하기
-```"C:\Program Files\Java\jdk-10.0.1\bin\javac.exe" Intro.java
-```
+```"C:\Program Files\Java\jdk-10.0.1\bin\javac.exe" Intro.java```
 
 이렇게 하면, 컴파일에 성공할 것이다. javac는 성공 메시지를 표시하지 않는다. 단지 새로운 파일만 출력할 것이다. 오류는 콘솔에 표시된다.
 
@@ -107,7 +106,7 @@ Intro.class를 jar 파일로 변환해보자.
 Intro.java를 저장한 위치로 되돌아가서, 목록 4에 보여진 명령어를 입력하라.
 
 <H3>●목록 4. JAR 파일 생성</h3>
-```C:\Users\mtyson\Documents>"c:\Program Files\Java\jdk-10.0.1\bin\jar.exe" --create --file intro.jar Intro.class```
+``` C:\Users\mtyson\Documents>"c:\Program Files\Java\jdk-10.0.1\bin\jar.exe" --create --file intro.jar Intro.class ```
 
 <H3>●jar 실행</h3>
 이제 해당 디렉토리에서 Intro.jar 파일을 볼 수 있을 것이다. 이를 클래스경로에 추가하고 다음과 같이 안에 있는 프로그램을 실행함으로써 .jar를 활용할 수 있다:
