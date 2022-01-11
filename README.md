@@ -4,7 +4,7 @@
 
 Java : https://www.java.com/ko/ ( 자바 )
 
-Eclipse : https://www.eclipse.org/downloads/ ( 자바 코딩 에디터 )
+Eclipse : https://www.eclipse.org/downloads/ ( 자바 코딩 통합 개발 환경 , IDE )
 
 Java SE Development Kit : https://www.oracle.com/java/technologies/downloads/ ( JVM, JRE, JDK, 자바 가상 머신 자바 런타임 환경 자바 패키지)
 
